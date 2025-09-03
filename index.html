@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure 기반 AI 교육 소개</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .presentation-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 1200px;
+            padding: 60px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            animation: slideIn 0.8s ease-out;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+        
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #4ecdc4;
+        }
+        
+        p, li {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .highlight {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4ecdc4;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+        
+        .nav-btn {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        ul {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: left;
+        }
+        
+        .azure-logo {
+            color: #0078d4;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .competitive-analysis {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        
+        .pros-cons {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .request-highlight {
+            background: linear-gradient(45deg, #ff4757, #ffa726);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">8</span>
+        </div>
+        
+        <!-- Slide 1: 타이틀 -->
+        <div class="slide active">
+            <h1>모두의연구소</h1>
+            <h2>Azure 기반 AI 교육 전문 기관</h2>
+            <div class="highlight">
+                <p>실무 중심의 클라우드 AI 교육으로 차세대 인재를 양성합니다</p>
+            </div>
+            <p>Share Value, Grow together</p>
+        </div>
+        
+        <!-- Slide 2: 모두의연구소 소개 -->
+        <div class="slide">
+            <h2>모두의연구소 소개</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">11,000+</div>
+                    <p>AI 커뮤니티 회원</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <p>글로벌 Top-tier 논문</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">23,000+</div>
+                    <p>AI 뉴스레터 구독자</p>
+                </div>
+            </div>
+            <div class="highlight">
+                <p>국내 최대 AI 커뮤니티 기반의 <strong>전문성</strong>, <strong>최신성</strong>, <strong>확장성</strong>을 갖춘 교육 기관</p>
+            </div>
+        </div>
+        
+        <!-- Slide 3: Azure 활용 교육 현황 -->
+        <div class="slide">
+            <h2>모두연 <span class="azure-logo">Microsoft Azure</span> 교육 현황</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🎯 KT ds AI Engineer 양성</h3>
+                    <ul>
+                        <li>12일 집중 교육 (150명+ 수료)</li>
+                        <li>LangChain + Azure OpenAI 통합</li>
+                        <li>실무형 MVP 프로젝트</li>
+                        <li>사전-사후 역량 진단 시스템</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>🤖 Copilot Studio 특화 교육</h3>
+                    <ul>
+                        <li>M365 통합 솔루션 구축</li>
+                        <li>비개발자 대상 노코드/로우코드</li>
+                        <li>업무 자동화 워크플로</li>
+                        <li>실시간 협업 시스템</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 4: KT ds 교육 성과 -->
+        <div class="slide">
+            <h2>KT ds 교육 성과 및 특징</h2>
+            <div class="highlight">
+                <p>🏆 Azure 기능 활용에 특화된 실무형 교육</p>
+            </div>
+            <ul>
+                <li><strong>오픈소스 + Azure 하이브리드 접근:</strong> LangChain과 Azure OpenAI 완벽 통합</li>
+                <li><strong>멀티모달 AI 구현:</strong> Document Intelligence + Vision + Speech 종합 활용</li>
+                <li><strong>RAG 시스템 고도화:</strong> Azure AI Search + 다양한 DB 연동</li>
+                <li><strong>실전 배포 경험:</strong> Azure 환경에서 직접 MVP 서비스 런칭</li>
+                <li><strong>Responsible AI:</strong> Content Safety + Cost Management 실무 적용</li>
+            </ul>
+            <div class="stat-card" style="margin-top: 30px;">
+                <p><strong>수강생 만족도 95%+</strong> / <strong>실무 적용률 85%+</strong></p>
+            </div>
+        </div>
+        
+        <!-- Slide 5: 교육 경험을 통한 Azure 장점 -->
+        <div class="slide">
+            <h2>교육 현장에서 검증된 Azure 장점</h2>
+            <div class="competitive-analysis">
+                <div class="pros-cons">
+                    <h3>✅ Azure 강점</h3>
+                    <ul>
+                        <li><strong>기업 친화적:</strong> M365 생태계 연동</li>
+                        <li><strong>멀티모달 강세:</strong> Document Intelligence, Vision</li>
+                        <li><strong>보안 중심:</strong> Content Safety, Responsible AI</li>
+                        <li><strong>하이브리드 지원:</strong> 온프레미스 연동 우수</li>
+                        <li><strong>한국어 지원:</strong> 현지화 서비스 강화</li>
+                    </ul>
+                </div>
+                <div class="pros-cons">
+                    <h3>⚠️ 타 클라우드 대비 과제</h3>
+                    <ul>
+                        <li>초기 설정의 복잡성</li>
+                        <li>상대적 높은 진입 비용</li>
+                        <li>레퍼런스 및 커뮤니티 규모</li>
+                        <li>최신 AI 모델 출시 속도</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 6: 멀티클라우드 트렌드 -->
+        <div class="slide">
+            <h2>현재 트렌드: 멀티클라우드 시대</h2>
+            <div class="highlight">
+                <p>🌐 플랫폼 종속 vs. 최적 솔루션 조합</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🔄 기업 현실</h3>
+                    <ul>
+                        <li>AWS: 인프라 및 범용 AI 서비스</li>
+                        <li>Azure: 엔터프라이즈 및 오피스 연동</li>
+                        <li>GCP: 데이터 분석 및 ML 특화</li>
+                        <li>국산 클라우드: 규제 대응</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>🎯 교육 전략 전환 필요</h3>
+                    <ul>
+                        <li><strong>플랫폼 중심</strong> → <strong>문제 해결 중심</strong></li>
+                        <li><strong>벤더 락인</strong> → <strong>최적 도구 조합</strong></li>
+                        <li><strong>기술 나열</strong> → <strong>실무 적용</strong></li>
+                        <li><strong>단일 해답</strong> → <strong>상황별 선택</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 7: 산업 중심 교육의 필요성 -->
+        <div class="slide">
+            <h2>실용적인 산업 중심 교육이 필요한 이유</h2>
+            <div class="highlight">
+                <p>💡 플랫폼이 아닌 <strong>문제 해결 능력</strong>을 키워야 합니다</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🏭 제조업</h3>
+                    <p>예지보전 + 품질관리<br>
+                    → Azure IoT + AWS SageMaker + 온프레미스 조합</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🏦 금융업</h3>
+                    <p>문서 처리 + 고객 서비스<br>
+                    → Azure AI + 국산 클라우드 하이브리드</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🏥 헬스케어</h3>
+                    <p>의료영상 분석 + 환자 관리<br>
+                    → GCP Healthcare + Azure FHIR</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🏢 일반 기업</h3>
+                    <p>업무 자동화 + 지식 관리<br>
+                    → M365 + 다양한 AI API 통합</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 8: 모두연 X Microsoft Azure 차별점 -->
+        <div class="slide">
+            <h1>모두의연구소 ✕ <span class="azure-logo">Microsoft Azure</span></h1>
+            <h2>혁신의 발판이 되는 교육</h2>
+            
+            <div class="highlight" style="margin: 30px 0;">
+                <p><strong>플랫폼 중심이 아닌, 산업 문제해결 중심 교육</strong></p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🎯 실무 중심 접근</h3>
+                    <p>이론이 아닌 <strong>실제 업무 문제</strong>를 Azure로 해결하는 경험</p>
+                    <ul>
+                        <li>업계별 맞춤 케이스 스터디</li>
+                        <li>현업 데이터 기반 프로젝트</li>
+                        <li>즉시 적용 가능한 MVP</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🔧 하이브리드 기술력</h3>
+                    <p><strong>오픈소스 + Azure</strong>의 최적 조합으로 실무 역량 강화</p>
+                    <ul>
+                        <li>LangChain + Azure OpenAI</li>
+                        <li>멀티클라우드 환경 대응</li>
+                        <li>벤더 락인 없는 유연성</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="stats-grid" style="margin-top: 40px;">
+                <div class="stat-card">
+                    <div class="stat-number">95%+</div>
+                    <p>교육 만족도</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">85%+</div>
+                    <p>실무 적용률</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">150명+</div>
+                    <p>Azure AI 전문가 배출</p>
+                </div>
+            </div>
+            
+            <div class="request-highlight" style="margin-top: 40px;">
+                <p><strong>산업의 미래를 함께 만들어가는 파트너십</strong></p>
+                <p>모두의연구소와 함께라면, Azure는 단순한 도구가 아닌 <strong>혁신의 플랫폼</strong>이 됩니다</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← 이전</button>
+        <button class="nav-btn" onclick="nextSlide()">다음 →</button>
+    </div>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        // 키보드 네비게이션
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+        
+        // 자동 슬라이드 기능 (옵션)
+        // setInterval(nextSlide, 10000); // 10초마다 자동 넘김
+    </script>
+</body>
+</html>
