@@ -1,0 +1,48 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches: [ "main" ]   # main에 push될 때마다 배포
+  workflow_dispatch:        # 필요 시 수동 실행도 가능
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # (선택) 빌드가 필요한 프로젝트면 아래 주석 해제 후 경로를 dist로 맞추세요.
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 18
+      # - name: Install dependencies
+      #   run: npm ci
+      # - name: Build
+      #   run: npm run build
+
+      # 정적 사이트라면 루트 전체를 배포 아티팩트로 업로드
+      # (빌드가 있는 경우 path를 ./dist 처럼 결과물 폴더로 바꾸세요)
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .   # index.html이 리포지토리 루트에 있는 경우
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
